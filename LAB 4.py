@@ -215,3 +215,42 @@ def duplicate_numbers():
 
 #duplicate_numbers()
 
+#04.2.1 The game of Nim
+from random import randint
+from math import log2
+
+def nim():
+    marbles_total = randint(10, 100)
+    player = randint(0, 1) 
+    difficulty = randint(0,1)
+
+    print("The amount of starting marbles is: " + str(marbles_total))
+
+    while marbles_total > 0:
+        print(f"{marbles_total} remaining")
+
+        if player == 0:
+            if difficulty == 0:
+                if marbles_total == 1:
+                    remove = 1
+                else:
+                    remove = randint(1, marbles_total//2)
+            else:
+                remove = marbles_total - 2 ** int(log2(marbles_total)) + 1
+        else:
+            remove = int(input("Your turn to remove: "))
+
+        if player == 0:
+            print(f"Computer removes {remove} marbles \n")
+        else: 
+            print(f"Player removes {remove} marbles \n")
+            
+        marbles_total = marbles_total - remove
+        player = 1 - player
+
+    if player == 1:
+        print("The player won!")
+    else:
+        print("The computer won!")
+        
+nim()        
