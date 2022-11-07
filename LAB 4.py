@@ -253,4 +253,54 @@ def nim():
     else:
         print("The computer won!")
         
-nim()        
+#nim()        
+
+#04.2.2 Image diagnostics
+import math
+
+def image():
+    
+    T = 6     # change it for a different atom
+    a = float(input("Enter the initial quantity of the material (amu): "))
+
+    for t in range(1,25):
+        A = (a * (math.e ** (-(math.log(2)/T)*t)))
+        rq = A/a
+
+        print(f'The relative quantity of Technetium-99 after {t}h is {round(rq, 4)} amu \n')
+        
+#image()
+
+#04.2.3 Trajectories
+
+def trajectories():
+    DELTA_T = 0.01
+    g = 9.81
+    t = 0
+    i = 1
+    v = float(input("Enter the starting velocity of the cannonball: "))
+    T = 1
+
+    while t < T:
+        s = -0.5 * g * t**2 + v * t
+
+        print(f'\nSecond {t} starting distance {round(s,3)}m \n')
+
+        i = 1
+        while i <= 100:
+            s = s + v * DELTA_T
+            v = v - g * DELTA_T
+
+            if v >= 0:
+                print(f'The speed is {round(v,3)}km/h')
+                print(f'The distance is {round(s,3)}m')
+                print(f'Total iteration: {i} \n')
+                i = i + 1
+            else: 
+                break
+
+            if i == 100:
+                T = T + 1
+        t = t + 1
+        
+#trajectories()
